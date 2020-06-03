@@ -24,10 +24,16 @@ export const weatherSlice = createSlice({
       ))
 
     },
+    removeCitySearch: (state, action) => {
+      state.forecasts = state.forecasts.filter( forecast => (
+        forecast.query !== action.payload
+      ))
+
+    },
   },
 });
 
-export const { setCurrent, addCitySearch, updateCitySearch } = weatherSlice.actions;
+export const { setCurrent, addCitySearch, updateCitySearch, removeCitySearch } = weatherSlice.actions;
 
 export const getCurrent = () => async dispatch => {
   const data = await Promise.all([
@@ -43,8 +49,18 @@ export const addCity = query => async (dispatch, getState) => {
   if (forecasts.length>4) return;
 
   dispatch(addCitySearch(query));
-  const data = await fetch(`http://localhost:3001/v1/forecast/${query}`).then(x=>x.json());
-  dispatch(updateCitySearch({...data, query}));
+  try{
+    const data = await fetch(`http://localhost:3001/v1/forecast/${query}`)
+      .then(response => {
+        if(!response.ok) throw Error('Couldn\'t fetch the forecast');
+        return response;
+      })
+      .then(x=>x.json())
+
+    dispatch(updateCitySearch({...data, query}));
+  } catch (e){
+    dispatch(removeCitySearch(query));
+  };
 
 }
 
