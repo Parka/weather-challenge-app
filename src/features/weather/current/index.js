@@ -1,26 +1,16 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import {
-  getCurrent,
-  selectCurrent
-} from '../weatherSlice';
+import React from 'react';
+
 import styles from './styles.module.scss';
 
-const Current = () => {
-  const current = useSelector(selectCurrent);
-  const dispatch = useDispatch();
+const Current = ({value}) => {
 
-  useEffect(() => {
-    dispatch(getCurrent())
-  }, [dispatch]);
-
-  if (!current) return "LOADING...";
+  if (!value) return "LOADING...";
 
   return (
     <div className={styles.main}>
-      <div>Temp: {current.weather.main.temp}</div>
-      <div>Max: {current.weather.main.temp_max}</div>
-      <div>Min: {current.weather.main.temp_min}</div>
+      <div>Temp: {value.temp}</div>
+      <div>Max: {value.temp_max}</div>
+      <div>Min: {value.temp_min}</div>
     </div>
   );
 }
