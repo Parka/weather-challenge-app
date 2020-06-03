@@ -3,8 +3,6 @@ import styles from './styles.module.scss';
 import Forecast from '../forecast';
 
 const ForecastList = ({value}) => {
-  console.log(value)
-  if (!value) return "LOADING...";
 
   return (
     <div className={styles.main}>

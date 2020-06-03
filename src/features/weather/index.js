@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   getCurrent,
-  addCity,
   selectCurrentWeather,
   selectCurrentForecast,
   selectCurrentLocation,
@@ -27,12 +26,15 @@ const Weather = () => {
     dispatch(getCurrent())
   }, [dispatch]);
 
+  if (!currentWeather) return 'Loading...';
+
+  const isForecastFull = forecasts.length < 5;
   return (
     <div className={styles.main}>
       <Current value={currentWeather}/>
       <Forecast value={currentForecast} location={currentLocation}/>
       <ForecastList value={forecasts}/>
-      <CitySearch/>
+      {isForecastFull && <CitySearch/>}
     </div>
   );
 }

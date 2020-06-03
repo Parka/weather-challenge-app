@@ -3,9 +3,6 @@ import styles from './styles.module.scss';
 import moment from 'moment';
 
 const Forecast = ({value, location}) => {
-
-  if (!value) return "LOADING...";
-
   return (
     <div className={styles.main}>
       <div>{location.city},{location.country}</div>
