@@ -8,9 +8,8 @@ const Current = ({value}) => {
 
   return (
     <div className={styles.main}>
-      <div>Temp: {value.temp}</div>
-      <div>Max: {value.temp_max}</div>
-      <div>Min: {value.temp_min}</div>
+      <img src={`http://openweathermap.org/img/wn/${value.icon}@2x.png`} alt=""/>
+      <div className={styles.temperature}>{value.temp} °C</div>
     </div>
   );
 }

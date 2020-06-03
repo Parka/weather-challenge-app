@@ -6,8 +6,12 @@ const ForecastList = ({value}) => {
 
   return (
     <div className={styles.main}>
-    {value.filter(x=>x.loaded).map(({forecast, location, id}) => (
-      <Forecast key={id} value={forecast} location={location}/>
+    {value.map(({forecast, location, id, loaded}) => (
+      loaded ?
+        <Forecast key={id} value={forecast} location={location}/>:
+        <div className={styles.spinner}>
+          <i className="fas fa-spinner fa-pulse"/>
+        </div>
     ))}
     </div>
   );

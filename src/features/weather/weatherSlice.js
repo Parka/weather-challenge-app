@@ -48,7 +48,10 @@ export const addCity = query => async (dispatch, getState) => {
 
 }
 
-export const selectCurrentWeather = state => state.weather.current ? state.weather.current.weather.main : null;
+export const selectCurrentWeather = state => state.weather.current ? {
+    temp: state.weather.current.weather.main.temp,
+    icon: state.weather.current.weather.weather[0].icon,
+  } : null;
 export const selectCurrentForecast = state => state.weather.current ? state.weather.current.forecast : null;
 export const selectCurrentLocation = state => state.weather.current ? state.weather.current.location : null;
 export const selectForecasts =  state => state.weather.forecasts ? state.weather.forecasts : null;

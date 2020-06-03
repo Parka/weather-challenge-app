@@ -6,7 +6,7 @@ import {
 
 import styles from './styles.module.scss';
 
-const Weather = () => {
+const Weather = ({disabled}) => {
   const dispatch = useDispatch();
   const [search, setSearch] = useState('');
 
@@ -17,14 +17,18 @@ const Weather = () => {
 
   return (
     <form
-      className={styles.main}
       onSubmit={ e => {
         submit();
         e.preventDefault();
       }}
     >
-      <input type="text" value={search} onChange={e => setSearch(e.target.value)}/>
-      <input type="button" value='+'/>
+      <input
+        type="text"
+        value={search}
+        onChange={e => setSearch(e.target.value)}
+        placeholder="Search city"
+        disabled={disabled}
+      />
     </form>
   );
 }

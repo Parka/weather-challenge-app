@@ -1,0 +1,22 @@
+.main {
+  border: solid 2px grey;
+  border-radius: 20px;
+  background-color: #b2e4a1;
+  padding: 20px;
+}
+
+.days {
+  display: flex;
+  flex-direction: row;
+  &> * + * {
+    margin-left: 10px;
+    padding-left: 10px;
+    border-left: solid 1px grey;
+  }
+}
+.location {
+  margin: 20px 0;
+}
+.weekday {
+  font-weight: bold;
+}

@@ -26,15 +26,19 @@ const Weather = () => {
     dispatch(getCurrent())
   }, [dispatch]);
 
-  if (!currentWeather) return 'Loading...';
+  if (!currentWeather) return 'Loading... ';
 
-  const isForecastFull = forecasts.length < 5;
+  const isForecastFull = !(forecasts.length < 5);
   return (
     <div className={styles.main}>
-      <Current value={currentWeather}/>
-      <Forecast value={currentForecast} location={currentLocation}/>
-      <ForecastList value={forecasts}/>
-      {isForecastFull && <CitySearch/>}
+      <div className={styles.content}>
+        <div className={styles.header}>
+          <Current value={currentWeather}/>
+          <CitySearch disabled={isForecastFull}/>
+        </div>
+        <Forecast value={currentForecast} location={currentLocation}/>
+        <ForecastList value={forecasts}/>
+      </div>
     </div>
   );
 }
