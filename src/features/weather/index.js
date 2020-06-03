@@ -12,7 +12,7 @@ import {
 import Current from './current';
 import Forecast from './forecast';
 import ForecastList from './forecast-list';
-
+import CitySearch from './city-search';
 
 import styles from './styles.module.scss';
 
@@ -32,6 +32,7 @@ const Weather = () => {
       <Current value={currentWeather}/>
       <Forecast value={currentForecast} location={currentLocation}/>
       <ForecastList value={forecasts}/>
+      <CitySearch/>
     </div>
   );
 }
